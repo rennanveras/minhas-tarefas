@@ -9,7 +9,7 @@ export const Card = styled.div<PropsOmit>`
   height: 62px;
   border-radius: 8px;
   border: 1px solid ${(props) => (props.ativo ? '#1E90FF' : '#a1a1a1')};
-  background-color: ${(props) => (props.ativo ? '#313131' : '#5e5e5e')};
+  background-color: ${(props) => (props.ativo ? '#313131' : '#515151')};
   padding: 8px;
   color: ${(props) => (props.ativo ? '#1E90FF' : '#ffffff')};
 `
