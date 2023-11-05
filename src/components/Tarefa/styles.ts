@@ -14,11 +14,12 @@ function retornaCorDefundo(props: TagProps) {
     if (props.status === enums.Status.PENDENTE) return variaveis.amarelo
     if (props.status === enums.Status.CONCLUIDA) return variaveis.verde
   } else {
-    if (props.prioridade === enums.Prioridade.URGENTE) return variaveis.vermelho
+    if (props.prioridade === enums.Prioridade.URGENTE)
+      return variaveis.vermelho2
     if (props.prioridade === enums.Prioridade.IMPORTANTE)
       return variaveis.laranja
   }
-  return '#cccccc'
+  return '#394aef'
 }
 export const Card = styled.div`
   padding: 16px;
@@ -29,6 +30,12 @@ export const Card = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 `
 export const Titulo = styled.h3`
   font-size: 18px;
@@ -71,12 +78,15 @@ export const Botao = styled.button`
   border-radius: 8px;
   margin-right: 8px;
 `
-export const BotaoSalvar = styled(Botao)`
-  background-color: ${variaveis.verde};
-`
+
 export const BotaoCancelar = styled(Botao)`
+  background-color: ${variaveis.vermelho2};
+`
+
+export const BotaoRemover = styled(Botao)`
   background-color: ${variaveis.vermelho};
 `
+
 export const a = styled(Botao)`
   background-color: ${variaveis.verde};
 `

@@ -1,34 +1,59 @@
+import { useSelector } from 'react-redux'
+
 import Tarefa from '../../components/Tarefa'
 import * as S from './styles'
-import * as enums from '../../utils/enums/Tarefa'
+
+import { RootReducer } from '../../store'
+import * as SG from '../../Styles'
 
 const ListaDeTarefas = () => {
-  const tarefas = [
-    {
-      titulo: 'Fazer pão',
-      prioridade: enums.Prioridade.IMPORTANTE,
-      status: enums.Status.PENDENTE,
-      descricao: 'compra fermento'
-    },
-    {
-      titulo: 'Limpar a casa',
-      prioridade: enums.Prioridade.IMPORTANTE,
-      status: enums.Status.PENDENTE,
-      descricao: ''
-    },
-    {
-      titulo: 'Fazer bolo',
-      prioridade: enums.Prioridade.URGENTE,
-      status: enums.Status.CONCLUIDA,
-      descricao: 'compra ovos, e gás'
-    }
-  ]
+  const { itens } = useSelector((state: RootReducer) => state.tarefas)
+  const { termo, criterio, valor } = useSelector(
+    (state: RootReducer) => state.filtro
+  )
 
+  const filtraTarefas = () => {
+    let tarefasFiltradas = itens
+
+    if (termo !== undefined) {
+      tarefasFiltradas = tarefasFiltradas.filter(
+        (item) => item.titulo.toLowerCase().search(termo.toLowerCase()) >= 0
+      )
+
+      if (criterio === 'prioridade') {
+        tarefasFiltradas = tarefasFiltradas.filter(
+          (item) => item.prioridade === valor
+        )
+      } else if (criterio === 'status') {
+        tarefasFiltradas = tarefasFiltradas.filter(
+          (item) => item.status === valor
+        )
+      }
+
+      return tarefasFiltradas
+    } else {
+      return itens
+    }
+  }
+  const exibeResultadoFiltragem = (quantidade: number) => {
+    let mensagem = ''
+    const complementacao =
+      termo !== undefined && termo.length > 0 ? `e "${termo}"` : ``
+
+    if (criterio === 'todas') {
+      mensagem = `${quantidade} tarefa(s) encontrada(s) como: todas ${complementacao}`
+    } else {
+      mensagem = `${quantidade} tarefa(s) encontrada(s) como: "${criterio}: ${valor}" ${complementacao}`
+    }
+
+    return mensagem
+  }
+
+  const tarefas = filtraTarefas()
+  const mensagem = exibeResultadoFiltragem(tarefas.length)
   return (
-    <S.AreaTarefas>
-      <p>
-        2 tarefas marcadas como &ldquo;categoria&ldquo; e &ldquo;termo&ldquo;
-      </p>
+    <SG.MainContainer>
+      <SG.Titulo as="p">{mensagem}</SG.Titulo>
       <S.ListTarefas>
         {tarefas.map((item) => (
           <li key={item.titulo}>
@@ -37,11 +62,12 @@ const ListaDeTarefas = () => {
               prioridade={item.prioridade}
               status={item.status}
               descricao={item.descricao}
+              id={item.id}
             />
           </li>
         ))}
       </S.ListTarefas>
-    </S.AreaTarefas>
+    </SG.MainContainer>
   )
 }
 
