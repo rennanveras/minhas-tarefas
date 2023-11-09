@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import variaveis from '../../Styles/variaveis'
 
 import * as enums from '../../utils/enums/Tarefa'
+import { Botao } from '../../Styles'
 
 type TagProps = {
   prioridade?: enums.Prioridade
@@ -24,7 +25,7 @@ function retornaCorDefundo(props: TagProps) {
 export const Card = styled.div`
   padding: 16px;
   border-radius: 16px;
-  background-color: #313131;
+  background-color: ${variaveis.colorSegundary};
   color: #e1e1e1e1;
   box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.505);
   display: flex;
@@ -66,17 +67,6 @@ export const Descricao = styled.textarea`
 export const BarraAcoes = styled.div`
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 16px;
-`
-export const Botao = styled.button`
-  font-weight: bold;
-  padding: 8px 12px;
-  font-size: 12px;
-  border: none;
-  cursor: pointer;
-  background-color: #0188c9;
-  color: #fff;
-  border-radius: 8px;
-  margin-right: 8px;
 `
 
 export const BotaoCancelar = styled(Botao)`

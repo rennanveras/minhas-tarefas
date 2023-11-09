@@ -1,5 +1,4 @@
 import { styled, createGlobalStyle } from 'styled-components'
-import { Botao } from '../components/Tarefa/styles'
 import variaveis from './variaveis'
 
 export const EstiloGlobal = createGlobalStyle`
@@ -19,9 +18,9 @@ export const Container = styled.div`
 `
 
 export const MainContainer = styled.main`
-  background-color: #111;
+  background-color: ${variaveis.colorPrimary};
   padding: 40px;
-  color: #e1e1e1;
+  color: ${variaveis.branco};
   height: 100vh;
   overflow-y: scroll;
 `
@@ -35,14 +34,30 @@ export const Titulo = styled.h2`
 `
 
 export const Campo = styled.input`
-  border: 1px solid #e1e1e1;
-  color: #e1e1e1;
+  border: 1px solid ${variaveis.branco};
+  color: ${variaveis.branco};
   border-radius: 8px;
   padding: 8px;
   font-weight: bold;
   font-size: 14px;
-  background-color: #222222;
+  background-color: ${variaveis.colorSegundary};
   width: 100%;
+
+  &::placeholder {
+    color: #c1c1c1;
+  }
+`
+
+export const Botao = styled.button`
+  font-weight: bold;
+  padding: 8px 12px;
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+  background-color: ${variaveis.azulClaro};
+  color: #fff;
+  border-radius: 8px;
+  margin-right: 8px;
 `
 
 export const BotaoSalvar = styled(Botao)`

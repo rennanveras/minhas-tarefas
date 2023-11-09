@@ -47,7 +47,10 @@ const Tarefa = ({
           checked={status === enums.Status.CONCLUIDA}
           onChange={alteraStatusTarefa}
         />
-        <S.Titulo>{titulo}</S.Titulo>
+        <S.Titulo>
+          {estaEditando && <em>Editando: </em>}
+          {titulo}
+        </S.Titulo>
       </label>
       <div>
         <S.Tag parametro="prioridade" prioridade={prioridade}>
@@ -91,7 +94,7 @@ const Tarefa = ({
           </>
         ) : (
           <>
-            <S.Botao onClick={() => setEstaEditando(true)}>Editar</S.Botao>
+            <SG.Botao onClick={() => setEstaEditando(true)}>Editar</SG.Botao>
             <S.BotaoRemover onClick={() => dispatch(remover(id))}>
               Remover
             </S.BotaoRemover>

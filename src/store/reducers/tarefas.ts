@@ -10,24 +10,10 @@ const initialState: TarefasState = {
   itens: [
     {
       id: 1,
-      titulo: 'estudar Java',
-      descricao: 'java',
+      titulo: 'Tarefa exemplo',
+      descricao: 'Tente criar a sua tarefa',
       prioridade: enums.Prioridade.NORMAL,
       status: enums.Status.PENDENTE
-    },
-    {
-      id: 2,
-      titulo: 'estudar Css',
-      descricao: 'css',
-      prioridade: enums.Prioridade.IMPORTANTE,
-      status: enums.Status.PENDENTE
-    },
-    {
-      id: 3,
-      titulo: 'estudar react',
-      descricao: 'react',
-      prioridade: enums.Prioridade.URGENTE,
-      status: enums.Status.CONCLUIDA
     }
   ]
 }
@@ -49,7 +35,7 @@ const tarefasSlice = createSlice({
         state.itens[indexDaTarefa] = action.payload
       }
     },
-    cadastrar: (state, action: PayloadAction<Tarefa>) => {
+    cadastrar: (state, action: PayloadAction<Omit<Tarefa, 'id'>>) => {
       const tarefaJaExiste = state.itens.find(
         (tarefa) =>
           tarefa.titulo.toLocaleLowerCase() ===
@@ -58,7 +44,12 @@ const tarefasSlice = createSlice({
       if (tarefaJaExiste) {
         alert('Já existe uma tarefa com esse nome')
       } else {
-        state.itens = [...state.itens, action.payload]
+        const ultimaTarefa = state.itens[state.itens.length - 1]
+        const tarefaNova = {
+          ...action.payload,
+          id: ultimaTarefa ? ultimaTarefa.id + 1 : 1
+        }
+        state.itens = [...state.itens, tarefaNova]
       }
     },
     alteraStatus: (
