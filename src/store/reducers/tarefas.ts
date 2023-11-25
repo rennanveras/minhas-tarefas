@@ -10,10 +10,17 @@ const initialState: TarefasState = {
   itens: [
     {
       id: 1,
-      titulo: 'Tarefa exemplo',
-      descricao: 'Tente criar a sua tarefa',
-      prioridade: enums.Prioridade.NORMAL,
+      titulo: 'Comprar comida',
+      descricao: 'Comprar arroz e feijão',
+      prioridade: enums.Prioridade.URGENTE,
       status: enums.Status.PENDENTE
+    },
+    {
+      id: 2,
+      titulo: 'Arrumar a casa',
+      descricao: 'Quarto, sala e cozinha',
+      prioridade: enums.Prioridade.IMPORTANTE,
+      status: enums.Status.CONCLUIDA
     }
   ]
 }

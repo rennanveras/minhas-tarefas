@@ -15,6 +15,10 @@ export const EstiloGlobal = createGlobalStyle`
 export const Container = styled.div`
   display: grid;
   grid-template-columns: 224px auto;
+
+  @media (max-width: 640px) {
+    display: block;
+  }
 `
 
 export const MainContainer = styled.main`
@@ -23,6 +27,10 @@ export const MainContainer = styled.main`
   color: ${variaveis.branco};
   height: 100vh;
   overflow-y: scroll;
+
+  @media (max-width: 640px) {
+    padding: 20px;
+  }
 `
 
 export const Titulo = styled.h2`
@@ -31,6 +39,10 @@ export const Titulo = styled.h2`
   margin-bottom: 40px;
   font-size: 18px;
   font-weight: bold;
+  @media (max-width: 640px) {
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
 `
 
 export const Campo = styled.input`

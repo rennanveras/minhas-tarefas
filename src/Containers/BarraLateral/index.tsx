@@ -8,7 +8,7 @@ import * as enums from '../../utils/enums/Tarefa'
 import { alteraTermo } from '../../store/reducers/filtro'
 import { useNavigate } from 'react-router-dom'
 
-type Props = {
+export type Props = {
   mostrarFiltros: boolean
 }
 
@@ -18,7 +18,7 @@ const BarraLateral = ({ mostrarFiltros }: Props) => {
   const { termo } = useSelector((state: RootReducer) => state.filtro)
 
   return (
-    <S.Aside>
+    <S.Aside asideComFiltros={mostrarFiltros}>
       <div>
         {mostrarFiltros ? (
           <>
